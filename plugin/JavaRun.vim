@@ -33,7 +33,7 @@ function! JavaRun(...)
 			let arg = arg . ' ' . a
 			let idx = idx + 1
 		endwhile
-		execute "!java " . expand("%:r") . " " . arg
+		execute "!java -cp ../out " . expand("%:r") . " " . arg
 	endif
 endfunction
 
@@ -58,7 +58,7 @@ function! ProgRun(...)
 			endwhile
 			cd %:p:h
 			if ext == "java"
-				execute "!java " . expand("%:r") . " " . arg
+				execute "!java -cp ../out " . expand("%:r") . " " . arg
 			elseif ext == "py"
 				execute "!python " . expand("%") . " " . arg
 			elseif ext == "pl"
@@ -77,9 +77,9 @@ endfunction
 
 
 set shellpipe=>\ %s\ 2>&1
-" set makeprg=javac\ %
+set makeprg=javac\ -d\ ../out\ %
 " set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
-set makeprg=jikes\ +E\ %
+" set makeprg=jikes\ +E\ %
 set errorformat=%f:%l:%v:%*\\d:%*\\d:%*\\s%m
 
 command! -nargs=* JavaRun call JavaRun(<f-args>)
@@ -93,23 +93,23 @@ if maparg("<F9>") == ""
 	map <F9> :make<CR>
 endif
 
-iab psvm public static void main(String[] args) { }<UP><END><BS><BS>
-iab sout System.out.println();<LEFT><LEFT>
-iab serr System.err.println();<LEFT><LEFT>
-iab pr private
-iab pe protected
-iab pu public
-iab ex extends
-iab bo boolean
-iab ab abstract
-iab cl class
-iab st static
-iab fi final
-iab ir import
-iab re return
-iab sw switch
-iab Ob Object
-iab Ex Exception
-iab En Enumeration
-iab Gr Graphics
+" iab psvm public static void main(String[] args) {<C-M>}<UP><END><C-M>
+" iab sout System.out.println();<LEFT><LEFT>
+" iab serr System.err.println();<LEFT><LEFT>
+" iab pr private
+" iab pe protected
+" iab pu public
+" iab ex extends
+" iab bo boolean
+" iab ab abstract
+" iab cl class
+" iab st static
+" iab fi final
+" iab ir import
+" iab re return
+" iab sw switch
+" iab Ob Object
+" iab Ex Exception
+" iab En Enumeration
+" iab Gr Graphics
 
