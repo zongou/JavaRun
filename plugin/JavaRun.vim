@@ -33,7 +33,7 @@ function! JavaRun(...)
 			let arg = arg . ' ' . a
 			let idx = idx + 1
 		endwhile
-		execute "term java -cp ../out " . expand("%:r") . " " . arg
+		execute "!java -cp ../out " . expand("%:r") . " " . arg
 	endif
 endfunction
 
@@ -58,17 +58,17 @@ function! ProgRun(...)
 			endwhile
 			cd %:p:h
 			if ext == "java"
-				execute "term java -cp ../out " . expand("%:r") . " " . arg
+				execute "!java -cp ../out " . expand("%:r") . " " . arg
 			elseif ext == "py"
-				execute "term python " . expand("%") . " " . arg
+				execute "!python " . expand("%") . " " . arg
 			elseif ext == "pl"
-				execute "term perl " . expand("%") . " " . arg
+				execute "!perl " . expand("%") . " " . arg
 			elseif ext == "rb"
-				execute "term ruby " . expand("%") . " " . arg
+				execute "!ruby " . expand("%") . " " . arg
 			elseif ext == "tcl"
-				execute "term tclsh " . expand("%") . " " . arg
+				execute "!tclsh " . expand("%") . " " . arg
 			elseif ext == "lisp"
-				execute "term clisp " . expand("%") . " " . arg
+				execute "!clisp " . expand("%") . " " . arg
 			endif
 			cd -
 		endif
